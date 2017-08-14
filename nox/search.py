@@ -80,7 +80,10 @@ def main(query):
             return action, packages
 
         action, packages = click.prompt('Packages to install',
-                                        value_proc=parse_input)
+                                        value_proc=parse_input,
+                                        default = [None, None], show_default = False)
+        if not action:
+            return
         attributes = [p.attribute for p in packages]
         if action == 'install':
             subprocess.check_call(['nix-env', '-iA', '--show-trace'] + attributes)
