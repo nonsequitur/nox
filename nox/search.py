@@ -28,10 +28,8 @@ Package = collections.namedtuple('Package', 'attribute name description')
 def key_for_path(path):
     try:
         manifest = os.path.join(path, 'manifest.nix')
-        config = os.path.expanduser("~/.nixpkgs/config.nix")
-        with open(manifest) as m:
-            with open(config) as c:
-                return m.read() + c.read()
+        with open(manifest) as f:
+            return f.read()
     except (FileNotFoundError, NotADirectoryError):
         pass
     if os.path.exists(os.path.join(path, '.git')):
