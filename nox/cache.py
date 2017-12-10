@@ -1,7 +1,7 @@
 from dogpile.cache import make_region
-import getpass
+import os
 
 region = make_region().configure(
     'dogpile.cache.dbm',
-    arguments={'filename': '/tmp/nox.dbm.'+getpass.getuser()}
+    arguments={'filename': os.environ['HOME'] + '/.cache/nox.dbm'}
 )
